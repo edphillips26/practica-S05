@@ -1,0 +1,40 @@
+<html xmlns:th="http://thymeleaf.org"><!-- th va a ser un prefijo -->
+    <head>
+        <title>Practica01</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <h2>Listado de Estados</h2>
+        <a th:href="@{/estado/nuevo}">Nuevo Estado </a>
+        
+        
+        <div th:if="${estados != null and !estados.empty}">
+            <table border="0">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Capital</th>
+                        <th>Poblacion</th>
+                        <th>Costas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="estado : ${estados}">
+                        <td>[[${estado.nombre}]]</td>
+                        <td>[[${estado.capital}]]</td>
+                        <td>[[${estado.poblacion}]]</td>
+                        <td>[[${estado.costas}]]</td>
+                        <td><a th:href="@{estado/eliminar/}+${estado.idEstado}">Eliminar</a></td>
+                        <td><a th:href="@{estado/modificar/}+${estado.idEstado}">Modificar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${estados != null and !estados.empty}">
+ 
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>
